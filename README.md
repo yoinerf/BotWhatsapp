@@ -1,1 +1,1 @@
-# BotWhatsapp
+# whatsapp-shopify-bot
