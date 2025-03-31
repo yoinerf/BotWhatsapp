@@ -1,5 +1,7 @@
 const { Client, LocalAuth } = require('whatsapp-web.js');
+const fs = require('fs');
 const qrcode = require('qrcode-terminal');
+const QRCode = require('qrcode');
 
 const client = new Client({
     authStrategy: new LocalAuth(),
@@ -25,9 +27,28 @@ const client = new Client({
 });
 
 client.on('qr', (qr) => {
-    console.log('Escanea este código QR para iniciar sesión:');
-    qrcode.generate(qr, { small: true });
+    console.log('Escanea el QR desde este enlace:');
+    console.log(`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qr)}`);
 });
+
+//client.on('qr', async (qr) => {
+//    console.log('Escanea el QR para iniciar sesión:');
+    
+    // Mostrar en la terminal (aunque Render lo deforme)
+//    qrcode.generate(qr, { small: true });
+
+    // Guardar el QR como imagen PNG
+//    await QRCode.toFile('qr.png', qr, {
+//        width: 300
+//    });
+
+ //   console.log('El QR ha sido guardado como qr.png');
+//});
+
+//client.on('qr', (qr) => {
+ //   console.log('Escanea este código QR para iniciar sesión:');
+//    qrcode.generate(qr, { small: true });
+//});
 
 client.on('ready', () => {
     console.log('✅ El cliente de WhatsApp está listo.');
