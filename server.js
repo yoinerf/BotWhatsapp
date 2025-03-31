@@ -58,12 +58,11 @@ client.on('message', async (message) => {
     if (!global.userRoles[userId]) {
         global.userRoles[userId] = { role: null, step: 0, productData: {} };
     }
+    
     if (text === 'salir') {
         // Reiniciar flujo
         global.userStep = '';
-        if (userSession.step != 0) {
-            userSession.productData = {};
-        }
+        userSession.productData = {};
         userSession.role = '';
         userSession.step = 0;
         await message.reply('👋 Se finalizó correctamente. \nPara iniciar nuevamente escriba *"Hola"* o *"Inicio"*.');
@@ -72,9 +71,7 @@ client.on('message', async (message) => {
     if (text === 'cancelar') {
         // cancelar flujo
         global.userStep = '';
-        if (userSession.step != 0) {
-            userSession.productData = {};
-        }
+        userSession.productData = {};
         userSession.role = '';
         userSession.step = 0;
         await message.reply('👋 Se canceló correctamente. \nPara iniciar nuevamente el menú, escriba *"Hola"* o *"Inicio"*.');
