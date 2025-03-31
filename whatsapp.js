@@ -4,23 +4,15 @@ const qrcode = require('qrcode-terminal');
 const client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
-        headless: true, // Importante para Render y servidores en la nube
+        headless: true,  // Render no tiene entorno gráfico
         args: [
             '--no-sandbox',
             '--disable-setuid-sandbox',
             '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
             '--disable-gpu',
-            '--disable-software-rasterizer',
-            '--disable-extensions',
-            '--disable-infobars',
-            '--disable-background-timer-throttling',
-            '--disable-backgrounding-occluded-windows',
-            '--disable-breakpad',
-            '--disable-component-extensions-with-background-pages',
-            '--disable-dev-shm-usage',
-            '--disable-features=Translate',
-            '--mute-audio'
-        ],
+            '--disable-software-rasterizer'
+        ]
     }
 });
 
@@ -43,8 +35,11 @@ client.on('auth_failure', (message) => {
 });
 
 client.on('disconnected', (reason) => {
-    console.log('⚠ Cliente desconectado:', reason);
-    client.initialize(); // Reintenta inicializar el cliente
+    console.log('Cliente desconectado:', reason);
+    setTimeout(() => {
+        console.log('♻ Reconectando el bot...');
+        client.initialize();
+    }, 5000);
 });
 
 client.initialize();
