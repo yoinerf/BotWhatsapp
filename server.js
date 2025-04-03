@@ -21,16 +21,26 @@ app.listen(PORT, '0.0.0.0', () => {
 const SESSION_EXPIRATION_TIME = 20 * 60 * 1000; // 20 minutos en milisegundos
 const sessions = {};
 
-// Limpieza periódica de sesiones
-setInterval(() => {
+// Limpieza periódica de sesiones con notificación
+setInterval(async () => {
     const now = Date.now();
-    Object.keys(sessions).forEach(userId => {
-        if (now - sessions[userId].lastActivity > SESSION_EXPIRATION_TIME) {
-            delete sessions[userId];
-            console.log(`Sesión expirada eliminada: ${userId}`);
-            message.reply('👋 La sesión se finalizó por inactividad. \nPara iniciar nuevamente escriba *"Hola"* o *"Inicio"*.');
+    for (const [userId, session] of Object.entries(sessions)) {
+        if (now - session.lastActivity > SESSION_EXPIRATION_TIME) {
+            try {
+                // Notificar al usuario antes de eliminar la sesión
+                await client.sendMessage(
+                    userId, 
+                    '⏳ *Tu sesión ha expirado por inactividad*.\n\n' +
+                    'Si deseas continuar, por favor envía un nuevo mensaje para iniciar una nueva sesión.'
+                );
+            } catch (error) {
+                console.error(`Error al notificar expiración a ${userId}:`, error);
+            } finally {
+                delete sessions[userId];
+                console.log(`Sesión expirada eliminada: ${userId}`);
+            }
         }
-    });
+    }
 }, 5 * 60 * 1000); // Revisar cada 5 minutos
 
 // Directorios temporales
