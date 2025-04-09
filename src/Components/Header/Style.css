@@ -1,0 +1,82 @@
+header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    background-color: #f8f8f8;
+    
+}
+.container{
+  display: flex;
+  align-items: center;
+}
+
+.logo{
+    display: flex;
+    font-family: 'Jura', sans-serif;
+    color: #F2400F;
+}
+
+.logo img{
+    width: 150px;
+}
+
+
+header .orders_icon{
+    position: fixed;
+    z-index: 2;
+    cursor :pointer;
+    padding-right: 50px;
+    background-color: #C97566;
+    /* border: 10px solid #1a1a1a; */
+    width: 1px;
+    height: 60px;
+    top: 12rem;
+    right: 0;
+    border-radius: 10px 0 0 10px;
+    box-shadow: 1px 5px 10px  #141414;;
+
+}
+header .orders_icon box-icon{
+    position: relative;
+    top: 15px;
+    left: 10px;
+    fill: rgb(233, 233, 233);
+    width: 30px;
+    height: 30px;
+    
+}
+header .orders_icon span{
+    position: absolute;
+    top: 0.2rem;
+    right: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    font-weight: 600;
+    background-color: #c94730;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    padding: 0rem;
+    font-size: 1rem;
+}
+header .orders_icon:hover{
+    transition: all .5s;
+    transform: scale(1.02);
+    box-shadow: 1px 1px 10px  #d8d8d8;;
+}
+header .orders_icon box-icon:hover{
+    cursor :pointer;
+    
+}
+
+
+
+  @media only screen and (max-width: 900px) {
+    .logo h1{
+        display:none;
+    }
+  }

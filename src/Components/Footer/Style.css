@@ -1,0 +1,31 @@
+
+  .footer{
+    position: relative;
+    top: 99vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f8f8f8;
+    width: 100%;
+    
+  }
+  
+  .footer img{
+    margin-top: 1rem;
+    width: 200px;
+    
+  }
+  
+  .hr{
+    position: absolute;
+    top: 0;
+    width: 99%;
+    
+  }
+
+  .derechos h1{
+    color: rgb(49, 49, 49);
+    font-weight: 100;
+    font-size: 1rem;
+  }

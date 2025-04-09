@@ -1,0 +1,47 @@
+.textField{
+    height: 40px;
+    width: 200px;
+    font-size: 1rem;
+    border: 1px solid transparent;
+    outline: none;
+    padding: 0 32px 0 16px;
+    background-color: white;
+    border-radius: 10px;
+    color: white;
+   
+}
+
+.textField:focus{
+    border: 1px solid #C97566;
+    transition: 0.35s ease;
+    color: #C97566;
+    font-size: 1rem;
+}
+.textField::placeholder{
+    font-size: 1rem;
+}
+
+.textField:hover {
+        cursor: pointer;
+}
+    
+header .search{
+    position: relative;
+    float: left;
+    padding-right: 50px;
+}
+
+header .search box-icon{
+    cursor: pointer;
+    position: absolute;
+    top: 0.3rem;
+    right: 3.5rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+@media only screen and (max-width: 480px) {
+    .search {
+      display:none;
+    }
+  }
